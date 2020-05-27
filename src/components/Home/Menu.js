@@ -2,18 +2,28 @@ import React, { Component } from 'react'
 import Title from '../Globals/Title'
 import Img from 'gatsby-image'
 
+const getCategories = items => {
+    let tempItems = items.map(items => {
+        return items.node.category;
+    });
+    return tempItems;
+}
+
 export default class Menu extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
             items: props.items.edges,
-            coffeeItems: props.items.edges           
-        }
- 
+            coffeeItems: props.items.edges,
+            categories: getCategories(props.items.edges)          
+        };
     }
 
     render() {
+
+        console.log(this.state.categories);
+        console.log(this.state.items);
 
         if ( this.state.items.length > 0 ) {
             return (
